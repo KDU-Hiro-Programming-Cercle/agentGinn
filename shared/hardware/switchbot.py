@@ -84,7 +84,15 @@ class SwitchBotClient:
         body = resp.json()
         if body.get("statusCode") != 100:
             raise SwitchBotError(f"SwitchBot API error: {body}")
-        return body["body"].get("deviceList", [])
+
+        devices = body["body"].get("deviceList", [])
+        for remote in body["body"].get("infraredRemoteList",[]):
+            remote["deviceType"] = remote.pop("remoteType",None)
+            remote.setdefault("enableCloudService",None)
+            devices.append(remote)
+        print(devices)
+
+        return devices
 
     async def send_aircon_command(
         self, device_id: str, *, temperature: int, mode: int, fan_speed: int, power: str

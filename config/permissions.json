@@ -4,9 +4,9 @@
   ],
   "command_roles": {
     "system": ["Admin"],
-    "sesami": ["Admin", "Member"],
-    "panpipes": ["Admin", "Member"],
+    "sesami": ["Admin", "@everyone"],
+    "panpipes": ["Admin", "@everyone"],
     "abacus": ["Admin"],
-    "khartes": ["Admin", "Member"]
+    "khartes": ["Admin", "@everyone"]
   }
 }
